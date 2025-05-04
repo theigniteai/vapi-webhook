@@ -1,8 +1,10 @@
 require('dotenv').config();
 const express = require('express');
+const cors = require('cors');
 const axios = require('axios');
 
 const app = express();
+app.use(cors());
 app.use(express.json({ limit: '10mb' }));
 
 const convertTextToSpeech = async (text, voiceId) => {
@@ -41,5 +43,5 @@ app.post('/webhook/vapi', async (req, res) => {
 });
 
 app.listen(process.env.PORT || 3000, () => {
-  console.log('✅ Vapi Webhook server running');
+  console.log('✅ Vapi Webhook server running with CORS enabled');
 });
